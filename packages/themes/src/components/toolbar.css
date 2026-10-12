@@ -1,0 +1,46 @@
+.monet-Toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--monet-space-2);
+  padding: var(--monet-space-2);
+  border: var(--monet-border-width) solid var(--monet-neutral-6);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-color-panel);
+}
+
+.monet-Toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: var(--monet-space-1);
+}
+
+.monet-Toolbar-separator {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: var(--monet-border-width);
+  margin-inline: var(--monet-space-2);
+  background-color: var(--monet-neutral-6);
+}
+
+.monet-Toolbar-link {
+  padding-inline: var(--monet-space-3);
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-sm);
+  text-decoration: none;
+}
+
+.monet-Toolbar-link:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Toolbar[data-orientation='vertical'] {
+  flex-direction: column;
+}
+
+.monet-Toolbar[data-orientation='vertical'] .monet-Toolbar-separator {
+  width: auto;
+  height: var(--monet-border-width);
+  margin-block: var(--monet-space-2);
+  margin-inline: 0;
+}

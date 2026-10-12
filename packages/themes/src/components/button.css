@@ -1,0 +1,89 @@
+/*
+ * Every visual decision resolves through a `--monet-button-*` variable, so an
+ * instance can be nudged (`style={{ '--monet-button-radius': '99px' }}`) without
+ * writing a new rule or fighting specificity.
+ */
+
+.monet-Button {
+  --monet-button-height: var(--monet-control-height-md);
+  --monet-button-padding: var(--monet-space-5);
+  --monet-button-font-size: var(--monet-text-md);
+  --monet-button-radius: var(--monet-radius-md);
+  --monet-button-bg: transparent;
+  --monet-button-bg-hover: transparent;
+  --monet-button-bg-active: transparent;
+  --monet-button-fg: var(--monet-tone-fg);
+  --monet-button-border-color: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--monet-space-3);
+  height: var(--monet-button-height);
+  padding-inline: var(--monet-button-padding);
+  border: var(--monet-border-width) solid var(--monet-button-border-color);
+  border-radius: var(--monet-button-radius);
+  background-color: var(--monet-button-bg);
+  color: var(--monet-button-fg);
+  font-size: var(--monet-button-font-size);
+  font-weight: var(--monet-weight-medium);
+  line-height: var(--monet-leading-tight);
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  transition:
+    background-color var(--monet-duration-fast) var(--monet-ease),
+    border-color var(--monet-duration-fast) var(--monet-ease),
+    color var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Button[data-size='sm'] {
+  --monet-button-height: var(--monet-control-height-sm);
+  --monet-button-padding: var(--monet-space-4);
+  --monet-button-font-size: var(--monet-text-sm);
+}
+
+.monet-Button[data-size='lg'] {
+  --monet-button-height: var(--monet-control-height-lg);
+  --monet-button-padding: var(--monet-space-6);
+  --monet-button-font-size: var(--monet-text-lg);
+  --monet-button-radius: var(--monet-radius-lg);
+}
+
+.monet-Button[data-variant='solid'] {
+  --monet-button-bg: var(--monet-tone-solid);
+  --monet-button-bg-hover: var(--monet-tone-solid-hover);
+  --monet-button-bg-active: var(--monet-tone-solid-hover);
+  --monet-button-fg: var(--monet-tone-on-solid);
+}
+
+.monet-Button[data-variant='outline'] {
+  --monet-button-bg-hover: var(--monet-tone-bg);
+  --monet-button-bg-active: var(--monet-tone-bg-active);
+  --monet-button-border-color: var(--monet-tone-border);
+}
+
+.monet-Button[data-variant='ghost'] {
+  --monet-button-bg-hover: var(--monet-tone-bg);
+  --monet-button-bg-active: var(--monet-tone-bg-active);
+}
+
+@media (hover: hover) {
+  .monet-Button:hover:not([data-disabled]) {
+    background-color: var(--monet-button-bg-hover);
+  }
+}
+
+.monet-Button:active:not([data-disabled]) {
+  background-color: var(--monet-button-bg-active);
+}
+
+.monet-Button:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Button[data-disabled] {
+  opacity: var(--monet-disabled-opacity);
+  cursor: not-allowed;
+}

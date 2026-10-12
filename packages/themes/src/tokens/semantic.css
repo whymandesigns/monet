@@ -1,0 +1,100 @@
+/*
+ * Semantic tokens — the vocabulary component CSS is allowed to speak.
+ *
+ * No component rule may reference a primitive scale step directly; it names a
+ * role here instead. That indirection is what makes a theme a few lines long:
+ * re-point a role, and every component that uses it moves with it.
+ *
+ * The `--monet-tone-*` block is the load-bearing idea. Rather than every
+ * component writing a rule per tone, each tone re-points one shared alias set,
+ * and components are written once against the aliases. `data-tone` therefore
+ * works on any element and cascades to its children.
+ */
+
+:root,
+[data-mode],
+[data-theme] {
+  /* Surfaces */
+  --monet-color-canvas: var(--monet-neutral-1);
+  --monet-color-panel: var(--monet-neutral-2);
+  --monet-color-elevated: var(--monet-neutral-2);
+
+  /* Text */
+  --monet-color-fg: var(--monet-neutral-12);
+  --monet-color-fg-muted: var(--monet-neutral-11);
+
+  /* Focus */
+  --monet-focus-color: var(--monet-accent-8);
+  --monet-focus-width: 2px;
+  --monet-focus-offset: 2px;
+
+  /* States that are not tone-specific */
+  --monet-disabled-opacity: 0.5;
+
+  /* Stacking. Portalled content is appended to <body>, but DOM order alone
+     loses to any positioned element in the host app that sets a z-index. */
+  --monet-z-overlay: 50;
+  --monet-z-popup: 60;
+  --monet-z-toast: 70;
+
+  /* Elevation */
+  --monet-shadow-sm: 0 1px 2px oklch(var(--monet-shadow-color) / var(--monet-shadow-strength));
+  --monet-shadow-md:
+    0 2px 4px -1px oklch(var(--monet-shadow-color) / var(--monet-shadow-strength)),
+    0 4px 12px -2px oklch(var(--monet-shadow-color) / var(--monet-shadow-strength));
+  --monet-shadow-lg:
+    0 4px 8px -2px oklch(var(--monet-shadow-color) / var(--monet-shadow-strength)),
+    0 16px 40px -8px oklch(var(--monet-shadow-color) / var(--monet-shadow-strength));
+}
+
+/*
+ * Tone aliases. `neutral` is the default so components work without a
+ * `data-tone` attribute anywhere on the page.
+ */
+:root,
+[data-mode],
+[data-theme],
+[data-tone='neutral'] {
+  --monet-tone-bg: var(--monet-neutral-3);
+  --monet-tone-bg-hover: var(--monet-neutral-4);
+  --monet-tone-bg-active: var(--monet-neutral-5);
+  --monet-tone-border-subtle: var(--monet-neutral-6);
+  --monet-tone-border: var(--monet-neutral-7);
+  --monet-tone-border-strong: var(--monet-neutral-8);
+  --monet-tone-fg-muted: var(--monet-neutral-11);
+  --monet-tone-fg: var(--monet-neutral-12);
+
+  /* Neutral reads better as a near-black/near-white solid than as its mid-grey
+     step 9, which is too low-contrast to carry text. */
+  --monet-tone-solid: var(--monet-neutral-12);
+  --monet-tone-solid-hover: var(--monet-neutral-11);
+  --monet-tone-on-solid: var(--monet-neutral-1);
+}
+
+[data-tone='accent'] {
+  --monet-tone-bg: var(--monet-accent-3);
+  --monet-tone-bg-hover: var(--monet-accent-4);
+  --monet-tone-bg-active: var(--monet-accent-5);
+  --monet-tone-border-subtle: var(--monet-accent-6);
+  --monet-tone-border: var(--monet-accent-7);
+  --monet-tone-border-strong: var(--monet-accent-8);
+  --monet-tone-fg-muted: var(--monet-accent-11);
+  --monet-tone-fg: var(--monet-accent-12);
+  --monet-tone-solid: var(--monet-accent-9);
+  --monet-tone-solid-hover: var(--monet-accent-10);
+  --monet-tone-on-solid: oklch(98% 0.01 var(--monet-accent-hue));
+}
+
+[data-tone='danger'] {
+  --monet-tone-bg: var(--monet-danger-3);
+  --monet-tone-bg-hover: var(--monet-danger-4);
+  --monet-tone-bg-active: var(--monet-danger-5);
+  --monet-tone-border-subtle: var(--monet-danger-6);
+  --monet-tone-border: var(--monet-danger-7);
+  --monet-tone-border-strong: var(--monet-danger-8);
+  --monet-tone-fg-muted: var(--monet-danger-11);
+  --monet-tone-fg: var(--monet-danger-12);
+  --monet-tone-solid: var(--monet-danger-9);
+  --monet-tone-solid-hover: var(--monet-danger-10);
+  --monet-tone-on-solid: oklch(98% 0.01 var(--monet-danger-hue));
+}

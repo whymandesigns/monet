@@ -1,0 +1,53 @@
+.monet-ScrollArea {
+  position: relative;
+  overflow: hidden;
+}
+
+.monet-ScrollArea-viewport {
+  height: 100%;
+  overscroll-behavior: contain;
+}
+
+.monet-ScrollArea-viewport:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: calc(var(--monet-focus-offset) * -1);
+}
+
+.monet-ScrollArea-scrollbar {
+  display: flex;
+  justify-content: center;
+  width: 0.5rem;
+  margin: var(--monet-space-1);
+  border-radius: var(--monet-radius-full);
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-ScrollArea-scrollbar[data-orientation='horizontal'] {
+  flex-direction: column;
+  width: auto;
+  height: 0.5rem;
+}
+
+.monet-ScrollArea-scrollbar[data-hovering],
+.monet-ScrollArea-scrollbar[data-scrolling] {
+  opacity: 1;
+}
+
+.monet-ScrollArea-thumb {
+  width: 100%;
+  height: var(--scroll-area-thumb-height);
+  border-radius: inherit;
+  background-color: var(--monet-neutral-8);
+}
+
+.monet-ScrollArea-scrollbar[data-orientation='horizontal'] .monet-ScrollArea-thumb {
+  width: var(--scroll-area-thumb-width);
+  height: 100%;
+}
+
+.monet-ScrollArea-corner {
+  width: var(--scroll-area-corner-width);
+  height: var(--scroll-area-corner-height);
+}

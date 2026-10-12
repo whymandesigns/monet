@@ -1,0 +1,27 @@
+/*
+ * Nymphéas — water-lily greens over a faintly green-grey neutral. Soft and
+ * low-contrast: larger radii, gentler borders, slower motion.
+ */
+
+[data-theme='nympheas'] {
+  --monet-neutral-hue: 155;
+  --monet-neutral-chroma: 0.014;
+  --monet-accent-hue: 173;
+  --monet-accent-chroma: 0.115;
+  --monet-danger-hue: 12;
+  --monet-danger-chroma: 0.16;
+
+  --monet-radius-sm: 0.375rem;
+  --monet-radius-md: 0.625rem;
+  --monet-radius-lg: 1rem;
+
+  --monet-control-height-sm: 1.875rem;
+  --monet-control-height-md: 2.375rem;
+  --monet-control-height-lg: 2.75rem;
+
+  --monet-duration-fast: 140ms;
+  --monet-duration-base: 220ms;
+  --monet-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --monet-focus-offset: 3px;
+}

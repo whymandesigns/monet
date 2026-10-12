@@ -1,0 +1,30 @@
+/*
+ * Tooltips invert against the page rather than sitting on the elevated
+ * surface — they are transient annotations, not panels, and the contrast
+ * separates them from popovers at a glance.
+ */
+
+.monet-Tooltip-popup {
+  max-width: 18rem;
+  padding: var(--monet-space-3) var(--monet-space-4);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-neutral-12);
+  color: var(--monet-neutral-1);
+  font-size: var(--monet-text-sm);
+  line-height: var(--monet-leading-tight);
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity var(--monet-duration-fast) var(--monet-ease),
+    scale var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Tooltip-popup[data-starting-style],
+.monet-Tooltip-popup[data-ending-style] {
+  opacity: 0;
+  scale: 0.94;
+}
+
+.monet-Tooltip-arrow {
+  border: none;
+  background-color: var(--monet-neutral-12);
+}

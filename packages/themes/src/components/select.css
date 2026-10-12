@@ -1,0 +1,75 @@
+.monet-Select-trigger {
+  --monet-select-height: var(--monet-control-height-md);
+  --monet-select-font-size: var(--monet-text-md);
+  --monet-select-bg: var(--monet-color-canvas);
+  --monet-select-border-color: var(--monet-neutral-7);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--monet-space-4);
+  min-width: 10rem;
+  height: var(--monet-select-height);
+  padding-inline: var(--monet-space-4);
+  border: var(--monet-border-width) solid var(--monet-select-border-color);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-select-bg);
+  color: var(--monet-color-fg);
+  font-size: var(--monet-select-font-size);
+  line-height: var(--monet-leading-tight);
+  cursor: default;
+  user-select: none;
+  transition: border-color var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Select-trigger[data-size='sm'] {
+  --monet-select-height: var(--monet-control-height-sm);
+  --monet-select-font-size: var(--monet-text-sm);
+}
+
+.monet-Select-trigger[data-size='lg'] {
+  --monet-select-height: var(--monet-control-height-lg);
+  --monet-select-font-size: var(--monet-text-lg);
+}
+
+@media (hover: hover) {
+  .monet-Select-trigger:hover:not([data-disabled]) {
+    --monet-select-border-color: var(--monet-neutral-8);
+  }
+}
+
+.monet-Select-trigger:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: -1px;
+}
+
+.monet-Select-trigger[data-invalid] {
+  --monet-select-border-color: var(--monet-danger-8);
+}
+
+.monet-Select-trigger[data-disabled] {
+  --monet-select-bg: var(--monet-neutral-2);
+  opacity: var(--monet-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.monet-Select-value[data-placeholder] {
+  color: var(--monet-neutral-10);
+}
+
+.monet-Select-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--monet-color-fg-muted);
+  transition: rotate var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Select-icon[data-popup-open] {
+  rotate: 180deg;
+}
+
+.monet-Select-itemIndicator {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+

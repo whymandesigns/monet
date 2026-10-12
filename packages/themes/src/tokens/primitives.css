@@ -1,0 +1,218 @@
+/*
+ * Primitives — the raw material. Everything else in the system is expressed in
+ * terms of these.
+ *
+ * The colour scales are *generated* from three knobs per family (hue, chroma,
+ * and a shared lightness ramp) rather than written out as 36 literals. A theme
+ * therefore only has to restate a couple of hues; it never has to hand-pick
+ * twelve steps unless it wants to.
+ *
+ * The ramp follows the Radix convention, which the component CSS relies on:
+ *   1    app background            7    normal border
+ *   2    subtle background         8    strong border / focus
+ *   3    component background      9    solid fill
+ *   4    component hover           10   solid hover
+ *   5    component active          11   low-contrast text
+ *   6    subtle border             12   high-contrast text
+ *
+ * Note the selector list: declaring the generated scales on every [data-mode]
+ * and [data-theme] element — not just :root — is what lets a nested subtree
+ * carry its own mode or theme. A custom property is substituted where it is
+ * *declared*, so a scale declared only on :root would freeze at the root's
+ * lightness ramp and ignore any nested override.
+ */
+
+:root,
+[data-mode],
+[data-theme] {
+  /* Colour families. Themes override these. */
+  --monet-neutral-hue: 264;
+  --monet-neutral-chroma: 0.006;
+  --monet-accent-hue: 264;
+  --monet-accent-chroma: 0.16;
+  --monet-danger-hue: 25;
+  --monet-danger-chroma: 0.17;
+
+  --monet-neutral-1: oklch(var(--monet-l-1) calc(var(--monet-neutral-chroma) * var(--monet-c-1)) var(--monet-neutral-hue));
+  --monet-neutral-2: oklch(var(--monet-l-2) calc(var(--monet-neutral-chroma) * var(--monet-c-2)) var(--monet-neutral-hue));
+  --monet-neutral-3: oklch(var(--monet-l-3) calc(var(--monet-neutral-chroma) * var(--monet-c-3)) var(--monet-neutral-hue));
+  --monet-neutral-4: oklch(var(--monet-l-4) calc(var(--monet-neutral-chroma) * var(--monet-c-4)) var(--monet-neutral-hue));
+  --monet-neutral-5: oklch(var(--monet-l-5) calc(var(--monet-neutral-chroma) * var(--monet-c-5)) var(--monet-neutral-hue));
+  --monet-neutral-6: oklch(var(--monet-l-6) calc(var(--monet-neutral-chroma) * var(--monet-c-6)) var(--monet-neutral-hue));
+  --monet-neutral-7: oklch(var(--monet-l-7) calc(var(--monet-neutral-chroma) * var(--monet-c-7)) var(--monet-neutral-hue));
+  --monet-neutral-8: oklch(var(--monet-l-8) calc(var(--monet-neutral-chroma) * var(--monet-c-8)) var(--monet-neutral-hue));
+  --monet-neutral-9: oklch(var(--monet-l-9) calc(var(--monet-neutral-chroma) * var(--monet-c-9)) var(--monet-neutral-hue));
+  --monet-neutral-10: oklch(var(--monet-l-10) calc(var(--monet-neutral-chroma) * var(--monet-c-10)) var(--monet-neutral-hue));
+  --monet-neutral-11: oklch(var(--monet-l-11) calc(var(--monet-neutral-chroma) * var(--monet-c-11)) var(--monet-neutral-hue));
+  --monet-neutral-12: oklch(var(--monet-l-12) calc(var(--monet-neutral-chroma) * var(--monet-c-12)) var(--monet-neutral-hue));
+
+  --monet-accent-1: oklch(var(--monet-l-1) calc(var(--monet-accent-chroma) * var(--monet-c-1)) var(--monet-accent-hue));
+  --monet-accent-2: oklch(var(--monet-l-2) calc(var(--monet-accent-chroma) * var(--monet-c-2)) var(--monet-accent-hue));
+  --monet-accent-3: oklch(var(--monet-l-3) calc(var(--monet-accent-chroma) * var(--monet-c-3)) var(--monet-accent-hue));
+  --monet-accent-4: oklch(var(--monet-l-4) calc(var(--monet-accent-chroma) * var(--monet-c-4)) var(--monet-accent-hue));
+  --monet-accent-5: oklch(var(--monet-l-5) calc(var(--monet-accent-chroma) * var(--monet-c-5)) var(--monet-accent-hue));
+  --monet-accent-6: oklch(var(--monet-l-6) calc(var(--monet-accent-chroma) * var(--monet-c-6)) var(--monet-accent-hue));
+  --monet-accent-7: oklch(var(--monet-l-7) calc(var(--monet-accent-chroma) * var(--monet-c-7)) var(--monet-accent-hue));
+  --monet-accent-8: oklch(var(--monet-l-8) calc(var(--monet-accent-chroma) * var(--monet-c-8)) var(--monet-accent-hue));
+  --monet-accent-9: oklch(var(--monet-l-9) calc(var(--monet-accent-chroma) * var(--monet-c-9)) var(--monet-accent-hue));
+  --monet-accent-10: oklch(var(--monet-l-10) calc(var(--monet-accent-chroma) * var(--monet-c-10)) var(--monet-accent-hue));
+  --monet-accent-11: oklch(var(--monet-l-11) calc(var(--monet-accent-chroma) * var(--monet-c-11)) var(--monet-accent-hue));
+  --monet-accent-12: oklch(var(--monet-l-12) calc(var(--monet-accent-chroma) * var(--monet-c-12)) var(--monet-accent-hue));
+
+  --monet-danger-1: oklch(var(--monet-l-1) calc(var(--monet-danger-chroma) * var(--monet-c-1)) var(--monet-danger-hue));
+  --monet-danger-2: oklch(var(--monet-l-2) calc(var(--monet-danger-chroma) * var(--monet-c-2)) var(--monet-danger-hue));
+  --monet-danger-3: oklch(var(--monet-l-3) calc(var(--monet-danger-chroma) * var(--monet-c-3)) var(--monet-danger-hue));
+  --monet-danger-4: oklch(var(--monet-l-4) calc(var(--monet-danger-chroma) * var(--monet-c-4)) var(--monet-danger-hue));
+  --monet-danger-5: oklch(var(--monet-l-5) calc(var(--monet-danger-chroma) * var(--monet-c-5)) var(--monet-danger-hue));
+  --monet-danger-6: oklch(var(--monet-l-6) calc(var(--monet-danger-chroma) * var(--monet-c-6)) var(--monet-danger-hue));
+  --monet-danger-7: oklch(var(--monet-l-7) calc(var(--monet-danger-chroma) * var(--monet-c-7)) var(--monet-danger-hue));
+  --monet-danger-8: oklch(var(--monet-l-8) calc(var(--monet-danger-chroma) * var(--monet-c-8)) var(--monet-danger-hue));
+  --monet-danger-9: oklch(var(--monet-l-9) calc(var(--monet-danger-chroma) * var(--monet-c-9)) var(--monet-danger-hue));
+  --monet-danger-10: oklch(var(--monet-l-10) calc(var(--monet-danger-chroma) * var(--monet-c-10)) var(--monet-danger-hue));
+  --monet-danger-11: oklch(var(--monet-l-11) calc(var(--monet-danger-chroma) * var(--monet-c-11)) var(--monet-danger-hue));
+  --monet-danger-12: oklch(var(--monet-l-12) calc(var(--monet-danger-chroma) * var(--monet-c-12)) var(--monet-danger-hue));
+
+  /* Typography */
+  --monet-font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --monet-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+
+  --monet-text-xs: 0.75rem;
+  --monet-text-sm: 0.8125rem;
+  --monet-text-md: 0.875rem;
+  --monet-text-lg: 1rem;
+  --monet-text-xl: 1.125rem;
+
+  --monet-leading-tight: 1.25;
+  --monet-leading-normal: 1.5;
+
+  --monet-weight-regular: 400;
+  --monet-weight-medium: 500;
+  --monet-weight-semibold: 600;
+
+  /* Space — a 4px base with a half-step at the bottom. */
+  --monet-space-1: 0.125rem;
+  --monet-space-2: 0.25rem;
+  --monet-space-3: 0.375rem;
+  --monet-space-4: 0.5rem;
+  --monet-space-5: 0.75rem;
+  --monet-space-6: 1rem;
+  --monet-space-7: 1.5rem;
+  --monet-space-8: 2rem;
+
+  /* Shape */
+  --monet-radius-sm: 0.25rem;
+  --monet-radius-md: 0.375rem;
+  --monet-radius-lg: 0.625rem;
+  --monet-radius-full: 9999px;
+  --monet-border-width: 1px;
+
+  /* Control sizing, shared by every interactive element. */
+  --monet-control-height-sm: 1.75rem;
+  --monet-control-height-md: 2.125rem;
+  --monet-control-height-lg: 2.5rem;
+
+  /* Motion */
+  --monet-duration-fast: 100ms;
+  --monet-duration-base: 160ms;
+  --monet-duration-slow: 240ms;
+  --monet-ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Light ramp. */
+:root,
+[data-mode='light'] {
+  --monet-l-1: 99.3%;
+  --monet-l-2: 97.9%;
+  --monet-l-3: 95.6%;
+  --monet-l-4: 93.4%;
+  --monet-l-5: 90.9%;
+  --monet-l-6: 87.9%;
+  --monet-l-7: 83.7%;
+  --monet-l-8: 77.1%;
+  --monet-l-9: 55.6%;
+  --monet-l-10: 50.6%;
+  --monet-l-11: 47.2%;
+  --monet-l-12: 25.1%;
+
+  --monet-c-1: 0.04;
+  --monet-c-2: 0.08;
+  --monet-c-3: 0.16;
+  --monet-c-4: 0.24;
+  --monet-c-5: 0.32;
+  --monet-c-6: 0.4;
+  --monet-c-7: 0.52;
+  --monet-c-8: 0.72;
+  --monet-c-9: 1;
+  --monet-c-10: 1;
+  --monet-c-11: 0.86;
+  --monet-c-12: 0.44;
+
+  --monet-shadow-color: 25% 0.03 264;
+  --monet-shadow-strength: 8%;
+}
+
+/* Dark ramp. Lightness inverts; chroma is pulled in at the extremes so the
+   darkest and lightest steps don't look tinted. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode='light']) {
+    --monet-l-1: 17.8%;
+    --monet-l-2: 21.3%;
+    --monet-l-3: 25.5%;
+    --monet-l-4: 28.7%;
+    --monet-l-5: 32%;
+    --monet-l-6: 35.9%;
+    --monet-l-7: 41.9%;
+    --monet-l-8: 51.3%;
+    --monet-l-9: 62%;
+    --monet-l-10: 67.6%;
+    --monet-l-11: 77.1%;
+    --monet-l-12: 94.9%;
+
+    --monet-c-1: 0.1;
+    --monet-c-2: 0.16;
+    --monet-c-3: 0.32;
+    --monet-c-4: 0.44;
+    --monet-c-5: 0.52;
+    --monet-c-6: 0.58;
+    --monet-c-7: 0.68;
+    --monet-c-8: 0.84;
+    --monet-c-9: 1;
+    --monet-c-10: 1;
+    --monet-c-11: 0.72;
+    --monet-c-12: 0.28;
+
+    --monet-shadow-color: 2% 0.02 264;
+    --monet-shadow-strength: 40%;
+  }
+}
+
+[data-mode='dark'] {
+  --monet-l-1: 17.8%;
+  --monet-l-2: 21.3%;
+  --monet-l-3: 25.5%;
+  --monet-l-4: 28.7%;
+  --monet-l-5: 32%;
+  --monet-l-6: 35.9%;
+  --monet-l-7: 41.9%;
+  --monet-l-8: 51.3%;
+  --monet-l-9: 62%;
+  --monet-l-10: 67.6%;
+  --monet-l-11: 77.1%;
+  --monet-l-12: 94.9%;
+
+  --monet-c-1: 0.1;
+  --monet-c-2: 0.16;
+  --monet-c-3: 0.32;
+  --monet-c-4: 0.44;
+  --monet-c-5: 0.52;
+  --monet-c-6: 0.58;
+  --monet-c-7: 0.68;
+  --monet-c-8: 0.84;
+  --monet-c-9: 1;
+  --monet-c-10: 1;
+  --monet-c-11: 0.72;
+  --monet-c-12: 0.28;
+
+  --monet-shadow-color: 2% 0.02 264;
+  --monet-shadow-strength: 40%;
+}

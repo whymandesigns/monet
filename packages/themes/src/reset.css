@@ -1,0 +1,40 @@
+/*
+ * Not a global reset. These rules only normalise what the system's own
+ * components depend on, so dropping @monet/themes into an existing app can't
+ * disturb markup it doesn't own.
+ */
+
+[class^='monet-'],
+[class*=' monet-'],
+[class^='monet-']::before,
+[class^='monet-']::after,
+[class*=' monet-']::before,
+[class*=' monet-']::after {
+  box-sizing: border-box;
+}
+
+.monet-Button,
+.monet-Input,
+.monet-Select-trigger,
+.monet-Toggle,
+.monet-Menu-trigger,
+.monet-Tabs-tab,
+.monet-Accordion-trigger,
+.monet-Collapsible-trigger,
+.monet-Dialog-dismiss,
+.monet-Popover-dismiss {
+  margin: 0;
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
+/* Base UI renders focusable popups; the ring belongs on the trigger, not here. */
+.monet-Select-positioner,
+.monet-Menu-positioner,
+.monet-Popover-positioner,
+.monet-Combobox-positioner,
+.monet-Tooltip-positioner,
+.monet-PreviewCard-positioner,
+.monet-Dialog-viewport {
+  outline: 0;
+}

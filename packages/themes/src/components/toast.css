@@ -1,0 +1,179 @@
+/*
+ * Toasts stack, and the stack is expressed entirely in CSS.
+ *
+ * Base UI publishes each toast's place in the stack (--toast-index), its
+ * measured height (--toast-height), the frontmost toast's height
+ * (--toast-frontmost-height), the expanded offset (--toast-offset-y) and any
+ * in-progress swipe (--toast-swipe-movement-x/y). The arithmetic below is
+ * adapted from Base UI's reference implementation; the collapsed stack peeks
+ * each card out by a fixed amount and shrinks it slightly, and the expanded
+ * stack fans out to real heights.
+ */
+
+.monet-Toast-viewport {
+  --monet-toast-gap: var(--monet-space-5);
+  --monet-toast-peek: var(--monet-space-5);
+
+  position: fixed;
+  right: var(--monet-space-6);
+  bottom: var(--monet-space-6);
+  z-index: var(--monet-z-toast);
+  display: flex;
+  width: 22rem;
+  max-width: calc(100vw - var(--monet-space-8));
+}
+
+.monet-Toast-viewport:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Toast {
+  /* Cards further back shrink; clamp so a deep stack never inverts. */
+  --monet-toast-scale: max(0, 1 - (var(--toast-index) * 0.1));
+  --monet-toast-shrink: calc(1 - var(--monet-toast-scale));
+  --monet-toast-height: var(--toast-frontmost-height, var(--toast-height));
+  --monet-toast-offset-y: calc(
+    var(--toast-offset-y) * -1 + var(--toast-index) * var(--monet-toast-gap) * -1 +
+      var(--toast-swipe-movement-y)
+  );
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: calc(1000 - var(--toast-index));
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--monet-toast-height);
+  padding: var(--monet-space-5);
+  border: var(--monet-border-width) solid var(--monet-neutral-6);
+  border-radius: var(--monet-radius-lg);
+  background-color: var(--monet-color-elevated);
+  box-shadow: var(--monet-shadow-lg);
+  color: var(--monet-color-fg);
+  transform-origin: bottom;
+  user-select: none;
+  transform: translateX(var(--toast-swipe-movement-x))
+    translateY(
+      calc(
+        var(--toast-swipe-movement-y) - (var(--toast-index) * var(--monet-toast-peek)) -
+          (var(--monet-toast-shrink) * var(--monet-toast-height))
+      )
+    )
+    scale(var(--monet-toast-scale));
+  transition:
+    transform var(--monet-duration-slow) var(--monet-ease),
+    opacity var(--monet-duration-slow) var(--monet-ease),
+    height var(--monet-duration-fast) var(--monet-ease);
+}
+
+/* Bridges the gap between cards so moving the pointer between them doesn't
+   collapse the stack mid-hover. */
+.monet-Toast::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: calc(var(--monet-toast-gap) + 1px);
+}
+
+.monet-Toast[data-expanded] {
+  height: var(--toast-height);
+  transform: translateX(var(--toast-swipe-movement-x))
+    translateY(var(--monet-toast-offset-y));
+}
+
+.monet-Toast[data-starting-style] {
+  transform: translateY(150%);
+}
+
+.monet-Toast[data-ending-style]:not([data-limited]):not([data-swipe-direction]) {
+  transform: translateY(150%);
+}
+
+.monet-Toast[data-ending-style],
+.monet-Toast[data-limited] {
+  opacity: 0;
+}
+
+.monet-Toast[data-ending-style][data-swipe-direction='down'] {
+  transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+}
+
+.monet-Toast[data-ending-style][data-swipe-direction='up'] {
+  transform: translateY(calc(var(--toast-swipe-movement-y) - 150%));
+}
+
+.monet-Toast[data-ending-style][data-swipe-direction='left'] {
+  transform: translateX(calc(var(--toast-swipe-movement-x) - 150%))
+    translateY(var(--monet-toast-offset-y));
+}
+
+.monet-Toast[data-ending-style][data-swipe-direction='right'] {
+  transform: translateX(calc(var(--toast-swipe-movement-x) + 150%))
+    translateY(var(--monet-toast-offset-y));
+}
+
+.monet-Toast[data-swiping] {
+  transition: none;
+}
+
+/* Only the frontmost card shows its content while collapsed. */
+.monet-Toast-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--monet-space-4);
+  overflow: hidden;
+  transition: opacity var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Toast-content[data-behind] {
+  opacity: 0;
+}
+
+.monet-Toast-content[data-expanded] {
+  opacity: 1;
+}
+
+.monet-Toast-title {
+  margin: 0;
+  font-size: var(--monet-text-md);
+  font-weight: var(--monet-weight-semibold);
+  line-height: var(--monet-leading-tight);
+}
+
+.monet-Toast-description {
+  margin: var(--monet-space-2) 0 0;
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-sm);
+  line-height: var(--monet-leading-normal);
+}
+
+.monet-Toast-action,
+.monet-Toast-close {
+  flex-shrink: 0;
+  height: var(--monet-control-height-sm);
+  padding-inline: var(--monet-space-4);
+  border: var(--monet-border-width) solid var(--monet-tone-border);
+  border-radius: var(--monet-radius-sm);
+  background: transparent;
+  color: var(--monet-color-fg);
+  font: inherit;
+  font-size: var(--monet-text-sm);
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .monet-Toast-action:hover,
+  .monet-Toast-close:hover {
+    background-color: var(--monet-tone-bg);
+  }
+}
+
+.monet-Toast-action:focus-visible,
+.monet-Toast-close:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}

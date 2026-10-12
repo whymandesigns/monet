@@ -1,0 +1,130 @@
+/*
+ * A dialog anchored to an edge of the screen.
+ *
+ * Which edge is not a data attribute — it follows from `swipeDirection` on
+ * Drawer.Root (default `down`, i.e. a bottom sheet), which Base UI reflects as
+ * `data-swipe-direction` on the popup. Auto margins place the popup against
+ * the matching edge, so the viewport needs no per-side rule of its own.
+ *
+ * Base UI publishes the live swipe as --drawer-swipe-movement-x/y and its
+ * progress as --drawer-swipe-progress (0–1), which is what lets the backdrop
+ * fade out under your finger rather than only on release.
+ */
+
+.monet-Drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--monet-z-overlay);
+  min-height: 100dvh;
+  background-color: oklch(var(--monet-shadow-color) / 35%);
+  opacity: calc(1 - var(--drawer-swipe-progress));
+  transition: opacity var(--monet-duration-slow) var(--monet-ease);
+}
+
+.monet-Drawer-backdrop[data-starting-style],
+.monet-Drawer-backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.monet-Drawer-backdrop[data-swiping] {
+  transition-duration: 0ms;
+}
+
+.monet-Drawer-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: var(--monet-z-overlay);
+  display: flex;
+}
+
+.monet-Drawer-popup {
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
+  border: var(--monet-border-width) solid var(--monet-neutral-6);
+  background-color: var(--monet-color-elevated);
+  box-shadow: var(--monet-shadow-lg);
+  color: var(--monet-color-fg);
+  outline: 0;
+  translate: var(--drawer-swipe-movement-x) var(--drawer-swipe-movement-y);
+  transition: translate var(--monet-duration-slow) var(--monet-ease);
+  will-change: translate;
+}
+
+.monet-Drawer-popup[data-swiping] {
+  transition-duration: 0ms;
+}
+
+/* Bottom sheet — the default. */
+.monet-Drawer-popup[data-swipe-direction='down'] {
+  margin-top: auto;
+  width: 100%;
+  max-height: 90dvh;
+  border-radius: var(--monet-radius-lg) var(--monet-radius-lg) 0 0;
+}
+
+.monet-Drawer-popup[data-swipe-direction='up'] {
+  margin-bottom: auto;
+  width: 100%;
+  max-height: 90dvh;
+  border-radius: 0 0 var(--monet-radius-lg) var(--monet-radius-lg);
+}
+
+.monet-Drawer-popup[data-swipe-direction='left'] {
+  margin-right: auto;
+  width: min(22rem, 90vw);
+  height: 100%;
+  border-radius: 0 var(--monet-radius-lg) var(--monet-radius-lg) 0;
+}
+
+.monet-Drawer-popup[data-swipe-direction='right'] {
+  margin-left: auto;
+  width: min(22rem, 90vw);
+  height: 100%;
+  border-radius: var(--monet-radius-lg) 0 0 var(--monet-radius-lg);
+}
+
+.monet-Drawer-popup[data-starting-style][data-swipe-direction='down'],
+.monet-Drawer-popup[data-ending-style][data-swipe-direction='down'] {
+  translate: 0 100%;
+}
+
+.monet-Drawer-popup[data-starting-style][data-swipe-direction='up'],
+.monet-Drawer-popup[data-ending-style][data-swipe-direction='up'] {
+  translate: 0 -100%;
+}
+
+.monet-Drawer-popup[data-starting-style][data-swipe-direction='left'],
+.monet-Drawer-popup[data-ending-style][data-swipe-direction='left'] {
+  translate: -100% 0;
+}
+
+.monet-Drawer-popup[data-starting-style][data-swipe-direction='right'],
+.monet-Drawer-popup[data-ending-style][data-swipe-direction='right'] {
+  translate: 100% 0;
+}
+
+.monet-Drawer-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--monet-space-4);
+  overflow-y: auto;
+  padding: var(--monet-space-7);
+}
+
+.monet-Drawer-title {
+  margin: 0;
+  font-size: var(--monet-text-xl);
+  font-weight: var(--monet-weight-semibold);
+}
+
+.monet-Drawer-description {
+  margin: 0;
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-md);
+  line-height: var(--monet-leading-normal);
+}
+
+.monet-Drawer-swipeArea {
+  touch-action: none;
+}

@@ -1,0 +1,62 @@
+.monet-Input {
+  --monet-input-height: var(--monet-control-height-md);
+  --monet-input-padding: var(--monet-space-4);
+  --monet-input-font-size: var(--monet-text-md);
+  --monet-input-radius: var(--monet-radius-md);
+  --monet-input-bg: var(--monet-color-canvas);
+  --monet-input-border-color: var(--monet-neutral-7);
+
+  display: block;
+  width: 100%;
+  height: var(--monet-input-height);
+  padding-inline: var(--monet-input-padding);
+  border: var(--monet-border-width) solid var(--monet-input-border-color);
+  border-radius: var(--monet-input-radius);
+  background-color: var(--monet-input-bg);
+  color: var(--monet-color-fg);
+  font-size: var(--monet-input-font-size);
+  line-height: var(--monet-leading-normal);
+  transition: border-color var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Input[data-size='sm'] {
+  --monet-input-height: var(--monet-control-height-sm);
+  --monet-input-font-size: var(--monet-text-sm);
+}
+
+.monet-Input[data-size='lg'] {
+  --monet-input-height: var(--monet-control-height-lg);
+  --monet-input-font-size: var(--monet-text-lg);
+  --monet-input-radius: var(--monet-radius-lg);
+}
+
+.monet-Input::placeholder {
+  color: var(--monet-neutral-10);
+}
+
+@media (hover: hover) {
+  .monet-Input:hover:not([data-disabled]) {
+    --monet-input-border-color: var(--monet-neutral-8);
+  }
+}
+
+.monet-Input:focus-visible {
+  --monet-input-border-color: var(--monet-focus-color);
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: -1px;
+}
+
+/* Base UI sets data-invalid on the control once Field validation has run. */
+.monet-Input[data-invalid] {
+  --monet-input-border-color: var(--monet-danger-8);
+}
+
+.monet-Input[data-invalid]:focus-visible {
+  outline-color: var(--monet-danger-8);
+}
+
+.monet-Input[data-disabled] {
+  --monet-input-bg: var(--monet-neutral-2);
+  opacity: var(--monet-disabled-opacity);
+  cursor: not-allowed;
+}

@@ -1,0 +1,99 @@
+.monet-Dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--monet-z-overlay);
+  background-color: oklch(var(--monet-shadow-color) / 35%);
+  backdrop-filter: blur(2px);
+  transition: opacity var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Dialog-backdrop[data-starting-style],
+.monet-Dialog-backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.monet-Dialog-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: var(--monet-z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: var(--monet-space-6);
+}
+
+.monet-Dialog-popup {
+  --monet-dialog-width: 26rem;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--monet-space-4);
+  width: 100%;
+  max-width: var(--monet-dialog-width);
+  padding: var(--monet-space-7);
+  border: var(--monet-border-width) solid var(--monet-neutral-6);
+  border-radius: var(--monet-radius-lg);
+  background-color: var(--monet-color-elevated);
+  box-shadow: var(--monet-shadow-lg);
+  color: var(--monet-color-fg);
+  outline: 0;
+  transition:
+    opacity var(--monet-duration-base) var(--monet-ease),
+    scale var(--monet-duration-base) var(--monet-ease),
+    translate var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Dialog-popup[data-starting-style],
+.monet-Dialog-popup[data-ending-style] {
+  opacity: 0;
+  scale: 0.97;
+  translate: 0 var(--monet-space-3);
+}
+
+.monet-Dialog-title {
+  margin: 0;
+  font-size: var(--monet-text-xl);
+  font-weight: var(--monet-weight-semibold);
+  line-height: var(--monet-leading-tight);
+}
+
+.monet-Dialog-description {
+  margin: 0;
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-md);
+  line-height: var(--monet-leading-normal);
+}
+
+.monet-Dialog-dismiss {
+  position: absolute;
+  top: var(--monet-space-4);
+  right: var(--monet-space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--monet-control-height-sm);
+  height: var(--monet-control-height-sm);
+  border: none;
+  border-radius: var(--monet-radius-sm);
+  background: transparent;
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-lg);
+  cursor: default;
+  transition:
+    background-color var(--monet-duration-fast) var(--monet-ease),
+    color var(--monet-duration-fast) var(--monet-ease);
+}
+
+@media (hover: hover) {
+  .monet-Dialog-dismiss:hover {
+    background-color: var(--monet-neutral-4);
+    color: var(--monet-color-fg);
+  }
+}
+
+.monet-Dialog-dismiss:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}

@@ -1,0 +1,190 @@
+/*
+ * Playground chrome. Every rule reads a monet token with a hardcoded fallback,
+ * so the page follows the active theme when the design system's CSS is on and
+ * degrades to plain browser defaults when it is switched off.
+ */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--monet-color-canvas, #fff);
+  color: var(--monet-color-fg, #111);
+  font-family: var(--monet-font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+.pg-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--monet-neutral-6, color-mix(in oklab, currentColor 20%, transparent));
+  background: var(--monet-color-panel, #fff);
+  font-size: 13px;
+}
+
+.pg-brand {
+  margin-right: auto;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pg-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+}
+
+.pg-control select {
+  font: inherit;
+  padding: 2px 4px;
+}
+
+.pg-control--check {
+  gap: 4px;
+}
+
+.pg-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 68rem;
+  padding: 32px 24px 96px;
+  margin: 0 auto;
+}
+
+.pg-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+.pg-note {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pg-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pg-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.pg-row--end {
+  justify-content: flex-end;
+}
+
+.pg-label {
+  width: 4.5rem;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.pg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 24rem;
+}
+
+.pg-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  max-width: 68rem;
+  padding: 16px 24px 0;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+.pg-toc a {
+  color: inherit;
+  opacity: 0.55;
+  text-decoration: none;
+}
+
+.pg-toc a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.pg-section {
+  scroll-margin-top: 64px;
+}
+
+.pg-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pg-narrow {
+  max-width: 18rem;
+}
+
+.pg-grow {
+  min-width: 0;
+  flex: 1;
+}
+
+.pg-muted {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.pg-link {
+  color: inherit;
+  text-underline-offset: 2px;
+}
+
+.pg-panel {
+  padding: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pg-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  border: 1px dashed var(--monet-neutral-7, #bbb);
+  border-radius: var(--monet-radius-md, 6px);
+  color: var(--monet-color-fg-muted, #666);
+  font-size: 13px;
+}
+
+.pg-scroll {
+  width: 14rem;
+  height: 9rem;
+  border: 1px solid var(--monet-neutral-6, #ddd);
+  border-radius: var(--monet-radius-md, 6px);
+}
+
+.pg-scroll-row {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.pg-field {
+  width: 11rem;
+}

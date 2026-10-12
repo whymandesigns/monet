@@ -1,0 +1,108 @@
+.monet-NumberField {
+  --monet-number-height: var(--monet-control-height-md);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--monet-space-3);
+}
+
+.monet-NumberField[data-size='sm'] {
+  --monet-number-height: var(--monet-control-height-sm);
+}
+
+.monet-NumberField[data-size='lg'] {
+  --monet-number-height: var(--monet-control-height-lg);
+}
+
+.monet-NumberField-group {
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--monet-number-height);
+  border: var(--monet-border-width) solid var(--monet-neutral-7);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-color-canvas);
+}
+
+.monet-NumberField-group:focus-within {
+  border-color: var(--monet-focus-color);
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: -1px;
+}
+
+.monet-NumberField-input {
+  width: 5rem;
+  min-width: 0;
+  padding-inline: var(--monet-space-4);
+  border: none;
+  background: transparent;
+  color: var(--monet-color-fg);
+  font: inherit;
+  font-size: var(--monet-text-md);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.monet-NumberField-input:focus-visible {
+  outline: none;
+}
+
+.monet-NumberField-step {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--monet-number-height);
+  border: none;
+  background: transparent;
+  color: var(--monet-color-fg-muted);
+  font: inherit;
+  font-size: var(--monet-text-lg);
+  cursor: default;
+  user-select: none;
+}
+
+@media (hover: hover) {
+  .monet-NumberField-step:hover:not([data-disabled]) {
+    background-color: var(--monet-neutral-3);
+    color: var(--monet-color-fg);
+  }
+}
+
+.monet-NumberField-step[data-disabled] {
+  opacity: var(--monet-disabled-opacity);
+}
+
+/* Drag-to-change region: the label doubles as a scrub handle. */
+.monet-NumberField-scrubArea {
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.monet-NumberField-scrubAreaCursor {
+  filter: drop-shadow(0 1px 1px oklch(var(--monet-shadow-color) / 40%));
+}
+
+.monet-OTPField {
+  display: flex;
+  align-items: center;
+  gap: var(--monet-space-3);
+}
+
+.monet-OTPField-input {
+  width: 2.5rem;
+  height: var(--monet-control-height-lg);
+  border: var(--monet-border-width) solid var(--monet-neutral-7);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-color-canvas);
+  color: var(--monet-color-fg);
+  font: inherit;
+  font-size: var(--monet-text-xl);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.monet-OTPField-input:focus-visible {
+  border-color: var(--monet-focus-color);
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: -1px;
+}

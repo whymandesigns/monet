@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    // Mirrors the Vite alias so typechecking sees the same source the dev
+    // server does, rather than a dist build that may not exist yet.
+    "paths": {
+      "@monet/react": ["../../packages/core/src/index.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

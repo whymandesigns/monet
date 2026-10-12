@@ -1,0 +1,86 @@
+.monet-Tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--monet-space-5);
+}
+
+.monet-Tabs-list {
+  position: relative;
+  display: flex;
+  gap: var(--monet-space-2);
+  box-shadow: inset 0 -1px 0 var(--monet-neutral-6);
+}
+
+.monet-Tabs-tab {
+  padding: var(--monet-space-4) var(--monet-space-5);
+  border: none;
+  background: transparent;
+  color: var(--monet-color-fg-muted);
+  font-family: inherit;
+  font-size: var(--monet-text-md);
+  font-weight: var(--monet-weight-medium);
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  transition: color var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Tabs-tab[data-selected] {
+  color: var(--monet-color-fg);
+}
+
+@media (hover: hover) {
+  .monet-Tabs-tab:hover:not([data-disabled]) {
+    color: var(--monet-color-fg);
+  }
+}
+
+.monet-Tabs-tab:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: calc(var(--monet-focus-offset) * -1);
+}
+
+.monet-Tabs-tab[data-disabled] {
+  opacity: var(--monet-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/*
+ * Base UI publishes the active tab's box as --active-tab-left/width, so the
+ * underline can slide between tabs in CSS alone, with no measuring in React.
+ */
+.monet-Tabs-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--active-tab-width);
+  height: 2px;
+  background-color: var(--monet-tone-solid);
+  translate: var(--active-tab-left) 0;
+  transition:
+    translate var(--monet-duration-base) var(--monet-ease),
+    width var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Tabs-panel:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Tabs[data-orientation='vertical'] {
+  flex-direction: row;
+}
+
+.monet-Tabs[data-orientation='vertical'] .monet-Tabs-list {
+  flex-direction: column;
+  box-shadow: inset -1px 0 0 var(--monet-neutral-6);
+}
+
+.monet-Tabs[data-orientation='vertical'] .monet-Tabs-indicator {
+  top: 0;
+  right: 0;
+  left: auto;
+  width: 2px;
+  height: var(--active-tab-height);
+  translate: 0 var(--active-tab-top);
+}

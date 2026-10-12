@@ -1,0 +1,36 @@
+/*
+ * Impression, Soleil Levant — a hot orange sun against cold blue-grey water.
+ * Tighter and harder-edged than the others: small radii, heavier type,
+ * high-contrast focus.
+ */
+
+[data-theme='sunrise'] {
+  --monet-neutral-hue: 237;
+  --monet-neutral-chroma: 0.018;
+  --monet-accent-hue: 46;
+  --monet-accent-chroma: 0.17;
+  --monet-danger-hue: 18;
+  --monet-danger-chroma: 0.19;
+
+  --monet-radius-sm: 0.125rem;
+  --monet-radius-md: 0.1875rem;
+  --monet-radius-lg: 0.25rem;
+
+  --monet-weight-medium: 600;
+  --monet-weight-semibold: 700;
+
+  --monet-duration-fast: 80ms;
+  --monet-duration-base: 120ms;
+  --monet-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --monet-focus-width: 2px;
+  --monet-focus-offset: 1px;
+
+  /* The accent is light enough that white text on it fails; go dark instead. */
+  --monet-focus-color: var(--monet-accent-9);
+}
+
+[data-theme='sunrise'] [data-tone='accent'],
+[data-theme='sunrise'][data-tone='accent'] {
+  --monet-tone-on-solid: oklch(22% 0.04 46);
+}

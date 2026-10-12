@@ -1,0 +1,14 @@
+.monet-Separator {
+  flex-shrink: 0;
+  background-color: var(--monet-neutral-6);
+}
+
+.monet-Separator[data-orientation='horizontal'] {
+  width: 100%;
+  height: var(--monet-border-width);
+}
+
+.monet-Separator[data-orientation='vertical'] {
+  align-self: stretch;
+  width: var(--monet-border-width);
+}

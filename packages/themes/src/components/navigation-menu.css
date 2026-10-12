@@ -1,0 +1,66 @@
+.monet-NavigationMenu-list {
+  display: flex;
+  align-items: center;
+  gap: var(--monet-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.monet-NavigationMenu-icon {
+  display: inline-flex;
+  transition: rotate var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-NavigationMenu-trigger[data-popup-open] .monet-NavigationMenu-icon {
+  rotate: 180deg;
+}
+
+.monet-NavigationMenu-content {
+  padding: var(--monet-space-5);
+}
+
+.monet-NavigationMenu-link {
+  display: block;
+  padding: var(--monet-space-3) var(--monet-space-4);
+  border-radius: var(--monet-radius-sm);
+  color: var(--monet-color-fg);
+  font-size: var(--monet-text-md);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .monet-NavigationMenu-link:hover {
+    background-color: var(--monet-tone-bg);
+  }
+}
+
+.monet-NavigationMenu-link:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: calc(var(--monet-focus-offset) * -1);
+}
+
+/*
+ * The popup resizes between items; Base UI publishes the target box as
+ * --popup-width/--popup-height so the change can be animated in CSS.
+ */
+.monet-NavigationMenu-popup {
+  width: var(--popup-width);
+  height: var(--popup-height);
+  transition:
+    opacity var(--monet-duration-base) var(--monet-ease),
+    width var(--monet-duration-base) var(--monet-ease),
+    height var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-NavigationMenu-popup[data-starting-style],
+.monet-NavigationMenu-popup[data-ending-style] {
+  opacity: 0;
+}
+
+.monet-NavigationMenu-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}

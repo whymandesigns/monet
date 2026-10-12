@@ -1,0 +1,41 @@
+.monet-Avatar {
+  --monet-avatar-size: 2.5rem;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: var(--monet-avatar-size);
+  height: var(--monet-avatar-size);
+  border-radius: var(--monet-radius-full);
+  background-color: var(--monet-neutral-3);
+  color: var(--monet-color-fg-muted);
+  font-size: calc(var(--monet-avatar-size) * 0.4);
+  font-weight: var(--monet-weight-medium);
+  line-height: 1;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.monet-Avatar[data-size='sm'] {
+  --monet-avatar-size: 1.75rem;
+}
+
+.monet-Avatar[data-size='lg'] {
+  --monet-avatar-size: 3.5rem;
+}
+
+.monet-Avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.monet-Avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}

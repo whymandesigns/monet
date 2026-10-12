@@ -1,0 +1,67 @@
+/* The popup surface itself is in surface.css. */
+
+.monet-Popover-popup,
+.monet-PreviewCard-popup {
+  padding: var(--monet-space-6);
+}
+
+.monet-Popover-title {
+  margin: 0 0 var(--monet-space-3);
+  font-size: var(--monet-text-lg);
+  font-weight: var(--monet-weight-semibold);
+  line-height: var(--monet-leading-tight);
+}
+
+.monet-Popover-description {
+  margin: 0;
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-md);
+  line-height: var(--monet-leading-normal);
+}
+
+.monet-Popover-dismiss {
+  position: absolute;
+  top: var(--monet-space-3);
+  right: var(--monet-space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--monet-control-height-sm);
+  height: var(--monet-control-height-sm);
+  border: none;
+  border-radius: var(--monet-radius-sm);
+  background: transparent;
+  color: var(--monet-color-fg-muted);
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .monet-Popover-dismiss:hover {
+    background-color: var(--monet-neutral-4);
+    color: var(--monet-color-fg);
+  }
+}
+
+.monet-Popover-dismiss:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Popover-backdrop,
+.monet-PreviewCard-backdrop,
+.monet-Menu-backdrop,
+.monet-Combobox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--monet-z-overlay);
+}
+
+/* Viewport animates size changes between popup contents. */
+.monet-Popover-viewport,
+.monet-PreviewCard-viewport,
+.monet-Tooltip-viewport,
+.monet-Menu-viewport {
+  transition:
+    width var(--monet-duration-base) var(--monet-ease),
+    height var(--monet-duration-base) var(--monet-ease);
+}

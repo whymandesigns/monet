@@ -1,0 +1,17 @@
+/*
+ * Graphite — cool neutrals, indigo accent. The system's defaults, stated
+ * explicitly so the theme can be swapped against the others on equal footing.
+ */
+
+[data-theme='graphite'] {
+  --monet-neutral-hue: 264;
+  --monet-neutral-chroma: 0.006;
+  --monet-accent-hue: 264;
+  --monet-accent-chroma: 0.16;
+  --monet-danger-hue: 25;
+  --monet-danger-chroma: 0.17;
+
+  --monet-radius-sm: 0.25rem;
+  --monet-radius-md: 0.375rem;
+  --monet-radius-lg: 0.625rem;
+}

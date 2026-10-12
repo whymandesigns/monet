@@ -1,0 +1,17 @@
+{
+  "name": "@monet/themes",
+  "version": "0.0.0",
+  "description": "CSS layer for @monet/react: token contract, component skin, and swappable themes. No JavaScript.",
+  "files": ["src"],
+  "exports": {
+    "./base.css": "./src/base.css",
+    "./reset.css": "./src/reset.css",
+    "./tokens/*.css": "./src/tokens/*.css",
+    "./components/*.css": "./src/components/*.css",
+    "./themes/*.css": "./src/themes/*.css"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('@monet/themes ships raw CSS; nothing to build')\"",
+    "typecheck": "node -e \"process.exit(0)\""
+  }
+}

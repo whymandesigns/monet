@@ -1,0 +1,86 @@
+/* Menu, Menubar and ContextMenu. The popup surface, rows, group labels and
+   separators come from surface.css; only the trigger and submenu bits differ. */
+
+.monet-Menu-trigger,
+.monet-NavigationMenu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--monet-space-3);
+  height: var(--monet-control-height-md);
+  padding-inline: var(--monet-space-5);
+  border: var(--monet-border-width) solid var(--monet-tone-border);
+  border-radius: var(--monet-radius-md);
+  background-color: transparent;
+  color: var(--monet-color-fg);
+  font-family: inherit;
+  font-size: var(--monet-text-md);
+  cursor: default;
+  user-select: none;
+}
+
+@media (hover: hover) {
+  .monet-Menu-trigger:hover:not([data-disabled]),
+  .monet-NavigationMenu-trigger:hover:not([data-disabled]) {
+    background-color: var(--monet-tone-bg);
+  }
+}
+
+.monet-Menu-trigger[data-popup-open],
+.monet-NavigationMenu-trigger[data-popup-open] {
+  background-color: var(--monet-tone-bg-active);
+}
+
+.monet-Menu-trigger:focus-visible,
+.monet-NavigationMenu-trigger:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Menu-itemIndicator {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Checkbox and radio items reserve the indicator column whether or not it is
+   filled, so labels in a mixed menu still line up. */
+.monet-Menu-item:has(.monet-Menu-itemIndicator) {
+  justify-content: flex-start;
+  gap: var(--monet-space-4);
+}
+
+.monet-Menu-input {
+  width: 100%;
+  margin-bottom: var(--monet-space-2);
+  padding: var(--monet-space-3) var(--monet-space-4);
+  border: none;
+  border-bottom: var(--monet-border-width) solid var(--monet-neutral-6);
+  border-radius: 0;
+  background: transparent;
+  color: var(--monet-color-fg);
+  font: inherit;
+  font-size: var(--monet-text-md);
+}
+
+.monet-Menu-input:focus-visible {
+  outline: none;
+  border-bottom-color: var(--monet-focus-color);
+}
+
+.monet-Menubar {
+  display: flex;
+  align-items: center;
+  gap: var(--monet-space-1);
+  padding: var(--monet-space-1);
+  border: var(--monet-border-width) solid var(--monet-neutral-6);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-color-panel);
+}
+
+.monet-Menubar .monet-Menu-trigger {
+  height: var(--monet-control-height-sm);
+  border-color: transparent;
+}
+
+.monet-ContextMenu-trigger {
+  user-select: none;
+}

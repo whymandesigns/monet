@@ -1,0 +1,119 @@
+/* Combobox and Autocomplete. Popup, list, rows and group labels: surface.css. */
+
+.monet-Combobox-inputGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--monet-space-2);
+  width: 100%;
+  min-height: var(--monet-control-height-md);
+  padding-inline: var(--monet-space-4);
+  border: var(--monet-border-width) solid var(--monet-neutral-7);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-color-canvas);
+  transition: border-color var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Combobox-inputGroup:focus-within {
+  border-color: var(--monet-focus-color);
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: -1px;
+}
+
+.monet-Combobox-inputGroup:has([data-invalid]) {
+  border-color: var(--monet-danger-8);
+}
+
+.monet-Combobox-input {
+  flex: 1;
+  min-width: 4rem;
+  padding-block: var(--monet-space-3);
+  border: none;
+  background: transparent;
+  color: var(--monet-color-fg);
+  font: inherit;
+  font-size: var(--monet-text-md);
+}
+
+.monet-Combobox-input:focus-visible {
+  outline: none;
+}
+
+.monet-Combobox-input::placeholder {
+  color: var(--monet-neutral-10);
+}
+
+.monet-Combobox-trigger,
+.monet-Combobox-icon,
+.monet-Combobox-clear {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--monet-color-fg-muted);
+  cursor: default;
+}
+
+.monet-Combobox-icon {
+  transition: rotate var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Combobox-icon[data-popup-open] {
+  rotate: 180deg;
+}
+
+.monet-Combobox-clear:focus-visible,
+.monet-Combobox-trigger:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+  border-radius: var(--monet-radius-sm);
+}
+
+.monet-Combobox-label {
+  display: block;
+  margin-bottom: var(--monet-space-3);
+  font-size: var(--monet-text-md);
+  font-weight: var(--monet-weight-medium);
+}
+
+/* Multi-select chips live inside the input group. */
+.monet-Combobox-chips {
+  display: contents;
+}
+
+.monet-Combobox-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--monet-space-2);
+  padding: var(--monet-space-1) var(--monet-space-3);
+  border-radius: var(--monet-radius-sm);
+  background-color: var(--monet-neutral-4);
+  font-size: var(--monet-text-sm);
+  white-space: nowrap;
+}
+
+.monet-Combobox-chip[data-highlighted] {
+  background-color: var(--monet-tone-solid);
+  color: var(--monet-tone-on-solid);
+}
+
+.monet-Combobox-chipRemove {
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: default;
+}
+
+.monet-Combobox-itemIndicator {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.monet-Combobox-row {
+  display: flex;
+  gap: var(--monet-space-2);
+}

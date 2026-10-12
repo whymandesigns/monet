@@ -1,0 +1,14 @@
+{
+  "name": "monet",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@8.15.1",
+  "scripts": {
+    "dev": "pnpm --filter @monet/playground dev",
+    "build": "pnpm --filter \"./packages/*\" -r build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

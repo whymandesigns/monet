@@ -1,0 +1,72 @@
+/* Shares Button's shape and variants; `data-pressed` is the extra state. */
+
+.monet-Toggle {
+  --monet-toggle-height: var(--monet-control-height-md);
+  --monet-toggle-padding: var(--monet-space-4);
+  --monet-toggle-font-size: var(--monet-text-md);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--monet-space-3);
+  min-width: var(--monet-toggle-height);
+  height: var(--monet-toggle-height);
+  padding-inline: var(--monet-toggle-padding);
+  border: var(--monet-border-width) solid transparent;
+  border-radius: var(--monet-radius-md);
+  background-color: transparent;
+  color: var(--monet-tone-fg);
+  font-size: var(--monet-toggle-font-size);
+  font-weight: var(--monet-weight-medium);
+  cursor: default;
+  user-select: none;
+  transition:
+    background-color var(--monet-duration-fast) var(--monet-ease),
+    color var(--monet-duration-fast) var(--monet-ease);
+}
+
+.monet-Toggle[data-size='sm'] {
+  --monet-toggle-height: var(--monet-control-height-sm);
+  --monet-toggle-padding: var(--monet-space-3);
+  --monet-toggle-font-size: var(--monet-text-sm);
+}
+
+.monet-Toggle[data-size='lg'] {
+  --monet-toggle-height: var(--monet-control-height-lg);
+  --monet-toggle-padding: var(--monet-space-5);
+  --monet-toggle-font-size: var(--monet-text-lg);
+}
+
+.monet-Toggle[data-variant='outline'] {
+  border-color: var(--monet-tone-border);
+}
+
+@media (hover: hover) {
+  .monet-Toggle:hover:not([data-disabled]) {
+    background-color: var(--monet-tone-bg);
+  }
+}
+
+.monet-Toggle[data-pressed] {
+  background-color: var(--monet-tone-solid);
+  color: var(--monet-tone-on-solid);
+  border-color: transparent;
+}
+
+.monet-Toggle:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Toggle[data-disabled] {
+  opacity: var(--monet-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.monet-ToggleGroup {
+  display: inline-flex;
+  gap: var(--monet-space-1);
+  padding: var(--monet-space-1);
+  border-radius: var(--monet-radius-md);
+  background-color: var(--monet-neutral-3);
+}

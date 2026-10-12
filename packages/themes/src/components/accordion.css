@@ -1,0 +1,73 @@
+/*
+ * Collapsible and Accordion share a panel that animates between zero and its
+ * measured height. Base UI publishes that height as --collapsible-panel-height
+ * / --accordion-panel-height, which is what makes a CSS-only open/close
+ * transition possible at all.
+ */
+
+.monet-Collapsible,
+.monet-Accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.monet-Collapsible-trigger,
+.monet-Accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--monet-space-4);
+  width: 100%;
+  padding: var(--monet-space-4) 0;
+  border: none;
+  background: transparent;
+  color: var(--monet-color-fg);
+  font-family: inherit;
+  font-size: var(--monet-text-md);
+  font-weight: var(--monet-weight-medium);
+  text-align: start;
+  cursor: default;
+}
+
+.monet-Collapsible-trigger:focus-visible,
+.monet-Accordion-trigger:focus-visible {
+  outline: var(--monet-focus-width) solid var(--monet-focus-color);
+  outline-offset: var(--monet-focus-offset);
+}
+
+.monet-Collapsible-trigger[data-disabled],
+.monet-Accordion-trigger[data-disabled] {
+  opacity: var(--monet-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.monet-Collapsible-panel {
+  overflow: hidden;
+  height: var(--collapsible-panel-height);
+  transition: height var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Accordion-panel {
+  overflow: hidden;
+  height: var(--accordion-panel-height);
+  color: var(--monet-color-fg-muted);
+  font-size: var(--monet-text-md);
+  line-height: var(--monet-leading-normal);
+  transition: height var(--monet-duration-base) var(--monet-ease);
+}
+
+.monet-Collapsible-panel[data-starting-style],
+.monet-Collapsible-panel[data-ending-style],
+.monet-Accordion-panel[data-starting-style],
+.monet-Accordion-panel[data-ending-style] {
+  height: 0;
+}
+
+.monet-Accordion-header {
+  margin: 0;
+  font-size: inherit;
+}
+
+.monet-Accordion-item {
+  border-bottom: var(--monet-border-width) solid var(--monet-neutral-6);
+}
